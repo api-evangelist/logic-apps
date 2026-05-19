@@ -1,0 +1,258 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Azure Logic Apps Management API — Workflows
+  description: 'Azure Logic Apps Management API — Workflows. 7 operations. Lead operation: List workflows by subscription.
+    Self-contained Naftiko capability covering one Logic Apps business surface.'
+  tags:
+  - Logic Apps
+  - Workflows
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    LOGIC_APPS_API_KEY: LOGIC_APPS_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: management-workflows
+    baseUri: https://management.azure.com
+    description: Azure Logic Apps Management API — Workflows business capability. Self-contained, no shared references.
+    resources:
+    - name: subscriptions-subscriptionId-providers-Microsoft.Logic-workflows
+      path: /subscriptions/{subscriptionId}/providers/Microsoft.Logic/workflows
+      operations:
+      - name: listworkflowsbysubscription
+        method: GET
+        description: List workflows by subscription
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof
+      path: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Logic/workflows
+      operations:
+      - name: listworkflowsbyresourcegroup
+        method: GET
+        description: List workflows by resource group
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof
+      path: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Logic/workflows/{workflowName}
+      operations:
+      - name: getworkflow
+        method: GET
+        description: Get a workflow
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createorupdateworkflow
+        method: PUT
+        description: Create or update a workflow
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deleteworkflow
+        method: DELETE
+        description: Delete a workflow
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof
+      path: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Logic/workflows/{workflowName}/disable
+      operations:
+      - name: disableworkflow
+        method: POST
+        description: Disable a workflow
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof
+      path: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Logic/workflows/{workflowName}/enable
+      operations:
+      - name: enableworkflow
+        method: POST
+        description: Enable a workflow
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.LOGIC_APPS_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: management-workflows-rest
+    port: 8080
+    description: REST adapter for Azure Logic Apps Management API — Workflows. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/subscriptions/{subscriptionid}/providers/microsoft-logic/workflows
+      name: subscriptions-subscriptionid-providers-microsoft-logic-workflows
+      description: REST surface for subscriptions-subscriptionId-providers-Microsoft.Logic-workflows.
+      operations:
+      - method: GET
+        name: listworkflowsbysubscription
+        description: List workflows by subscription
+        call: management-workflows.listworkflowsbysubscription
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/subscriptions/{subscriptionid}/resourcegroups/{resourcegroupname}/providers/microsoft-logic/workflows
+      name: subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsof
+      description: REST surface for subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof.
+      operations:
+      - method: GET
+        name: listworkflowsbyresourcegroup
+        description: List workflows by resource group
+        call: management-workflows.listworkflowsbyresourcegroup
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/subscriptions/{subscriptionid}/resourcegroups/{resourcegroupname}/providers/microsoft-logic/workflows/{workflowname}
+      name: subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsof
+      description: REST surface for subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof.
+      operations:
+      - method: GET
+        name: getworkflow
+        description: Get a workflow
+        call: management-workflows.getworkflow
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: createorupdateworkflow
+        description: Create or update a workflow
+        call: management-workflows.createorupdateworkflow
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteworkflow
+        description: Delete a workflow
+        call: management-workflows.deleteworkflow
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/subscriptions/{subscriptionid}/resourcegroups/{resourcegroupname}/providers/microsoft-logic/workflows/{workflowname}/disable
+      name: subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsof
+      description: REST surface for subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof.
+      operations:
+      - method: POST
+        name: disableworkflow
+        description: Disable a workflow
+        call: management-workflows.disableworkflow
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/subscriptions/{subscriptionid}/resourcegroups/{resourcegroupname}/providers/microsoft-logic/workflows/{workflowname}/enable
+      name: subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsof
+      description: REST surface for subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof.
+      operations:
+      - method: POST
+        name: enableworkflow
+        description: Enable a workflow
+        call: management-workflows.enableworkflow
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: management-workflows-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Azure Logic Apps Management API — Workflows. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: list-workflows-subscription
+      description: List workflows by subscription
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: management-workflows.listworkflowsbysubscription
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-workflows-resource-group
+      description: List workflows by resource group
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: management-workflows.listworkflowsbyresourcegroup
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-workflow
+      description: Get a workflow
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: management-workflows.getworkflow
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-update-workflow
+      description: Create or update a workflow
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: management-workflows.createorupdateworkflow
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-workflow
+      description: Delete a workflow
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: management-workflows.deleteworkflow
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: disable-workflow
+      description: Disable a workflow
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: management-workflows.disableworkflow
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: enable-workflow
+      description: Enable a workflow
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: management-workflows.enableworkflow
+      outputParameters:
+      - type: object
+        mapping: $.
