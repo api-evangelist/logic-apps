@@ -1,0 +1,550 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Azure Logic Apps Management API",
+    "version": "2016-06-01"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://login.microsoftonline.com/common/oauth2/authorize",
+      "accessTokenUrl": "https://login.microsoftonline.com/common/oauth2/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Workflows",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List workflows by subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://management.azure.com/subscriptions/:subscriptionId/providers/Microsoft.Logic/workflows",
+            "params": [
+              {
+                "name": "subscriptionId",
+                "value": "",
+                "type": "path",
+                "description": "The Azure subscription identifier."
+              },
+              {
+                "name": "api-version",
+                "value": "",
+                "type": "query",
+                "description": "The Azure REST API version."
+              }
+            ]
+          },
+          "docs": "List workflows by subscription"
+        },
+        {
+          "info": {
+            "name": "List workflows by resource group",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://management.azure.com/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Logic/workflows",
+            "params": [
+              {
+                "name": "subscriptionId",
+                "value": "",
+                "type": "path",
+                "description": "The Azure subscription identifier."
+              },
+              {
+                "name": "resourceGroupName",
+                "value": "",
+                "type": "path",
+                "description": "The resource group containing the workflow."
+              },
+              {
+                "name": "api-version",
+                "value": "",
+                "type": "query",
+                "description": "The Azure REST API version."
+              }
+            ]
+          },
+          "docs": "List workflows by resource group"
+        },
+        {
+          "info": {
+            "name": "Get a workflow",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://management.azure.com/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Logic/workflows/:workflowName",
+            "params": [
+              {
+                "name": "subscriptionId",
+                "value": "",
+                "type": "path",
+                "description": "The Azure subscription identifier."
+              },
+              {
+                "name": "resourceGroupName",
+                "value": "",
+                "type": "path",
+                "description": "The resource group containing the workflow."
+              },
+              {
+                "name": "workflowName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the workflow."
+              },
+              {
+                "name": "api-version",
+                "value": "",
+                "type": "query",
+                "description": "The Azure REST API version."
+              }
+            ]
+          },
+          "docs": "Get a workflow"
+        },
+        {
+          "info": {
+            "name": "Create or update a workflow",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://management.azure.com/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Logic/workflows/:workflowName",
+            "params": [
+              {
+                "name": "subscriptionId",
+                "value": "",
+                "type": "path",
+                "description": "The Azure subscription identifier."
+              },
+              {
+                "name": "resourceGroupName",
+                "value": "",
+                "type": "path",
+                "description": "The resource group containing the workflow."
+              },
+              {
+                "name": "workflowName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the workflow."
+              },
+              {
+                "name": "api-version",
+                "value": "",
+                "type": "query",
+                "description": "The Azure REST API version."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create or update a workflow"
+        },
+        {
+          "info": {
+            "name": "Delete a workflow",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://management.azure.com/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Logic/workflows/:workflowName",
+            "params": [
+              {
+                "name": "subscriptionId",
+                "value": "",
+                "type": "path",
+                "description": "The Azure subscription identifier."
+              },
+              {
+                "name": "resourceGroupName",
+                "value": "",
+                "type": "path",
+                "description": "The resource group containing the workflow."
+              },
+              {
+                "name": "workflowName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the workflow."
+              },
+              {
+                "name": "api-version",
+                "value": "",
+                "type": "query",
+                "description": "The Azure REST API version."
+              }
+            ]
+          },
+          "docs": "Delete a workflow"
+        },
+        {
+          "info": {
+            "name": "Disable a workflow",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://management.azure.com/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Logic/workflows/:workflowName/disable",
+            "params": [
+              {
+                "name": "subscriptionId",
+                "value": "",
+                "type": "path",
+                "description": "The Azure subscription identifier."
+              },
+              {
+                "name": "resourceGroupName",
+                "value": "",
+                "type": "path",
+                "description": "The resource group containing the workflow."
+              },
+              {
+                "name": "workflowName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the workflow."
+              },
+              {
+                "name": "api-version",
+                "value": "",
+                "type": "query",
+                "description": "The Azure REST API version."
+              }
+            ]
+          },
+          "docs": "Disable a workflow"
+        },
+        {
+          "info": {
+            "name": "Enable a workflow",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://management.azure.com/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Logic/workflows/:workflowName/enable",
+            "params": [
+              {
+                "name": "subscriptionId",
+                "value": "",
+                "type": "path",
+                "description": "The Azure subscription identifier."
+              },
+              {
+                "name": "resourceGroupName",
+                "value": "",
+                "type": "path",
+                "description": "The resource group containing the workflow."
+              },
+              {
+                "name": "workflowName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the workflow."
+              },
+              {
+                "name": "api-version",
+                "value": "",
+                "type": "query",
+                "description": "The Azure REST API version."
+              }
+            ]
+          },
+          "docs": "Enable a workflow"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "WorkflowRuns",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List workflow runs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://management.azure.com/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Logic/workflows/:workflowName/runs",
+            "params": [
+              {
+                "name": "subscriptionId",
+                "value": "",
+                "type": "path",
+                "description": "The Azure subscription identifier."
+              },
+              {
+                "name": "resourceGroupName",
+                "value": "",
+                "type": "path",
+                "description": "The resource group containing the workflow."
+              },
+              {
+                "name": "workflowName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the workflow."
+              },
+              {
+                "name": "api-version",
+                "value": "",
+                "type": "query",
+                "description": "The Azure REST API version."
+              },
+              {
+                "name": "$top",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of runs to return."
+              },
+              {
+                "name": "$filter",
+                "value": "",
+                "type": "query",
+                "description": "OData filter expression for run status, time, etc."
+              }
+            ]
+          },
+          "docs": "List workflow runs"
+        },
+        {
+          "info": {
+            "name": "Get a workflow run",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://management.azure.com/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Logic/workflows/:workflowName/runs/:runName",
+            "params": [
+              {
+                "name": "subscriptionId",
+                "value": "",
+                "type": "path",
+                "description": "The Azure subscription identifier."
+              },
+              {
+                "name": "resourceGroupName",
+                "value": "",
+                "type": "path",
+                "description": "The resource group containing the workflow."
+              },
+              {
+                "name": "workflowName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the workflow."
+              },
+              {
+                "name": "runName",
+                "value": "",
+                "type": "path",
+                "description": "The workflow run identifier."
+              },
+              {
+                "name": "api-version",
+                "value": "",
+                "type": "query",
+                "description": "The Azure REST API version."
+              }
+            ]
+          },
+          "docs": "Get a workflow run"
+        },
+        {
+          "info": {
+            "name": "Cancel a workflow run",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://management.azure.com/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Logic/workflows/:workflowName/runs/:runName/cancel",
+            "params": [
+              {
+                "name": "subscriptionId",
+                "value": "",
+                "type": "path",
+                "description": "The Azure subscription identifier."
+              },
+              {
+                "name": "resourceGroupName",
+                "value": "",
+                "type": "path",
+                "description": "The resource group containing the workflow."
+              },
+              {
+                "name": "workflowName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the workflow."
+              },
+              {
+                "name": "runName",
+                "value": "",
+                "type": "path",
+                "description": "The workflow run identifier."
+              },
+              {
+                "name": "api-version",
+                "value": "",
+                "type": "query",
+                "description": "The Azure REST API version."
+              }
+            ]
+          },
+          "docs": "Cancel a workflow run"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "WorkflowTriggers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List workflow triggers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://management.azure.com/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Logic/workflows/:workflowName/triggers",
+            "params": [
+              {
+                "name": "subscriptionId",
+                "value": "",
+                "type": "path",
+                "description": "The Azure subscription identifier."
+              },
+              {
+                "name": "resourceGroupName",
+                "value": "",
+                "type": "path",
+                "description": "The resource group containing the workflow."
+              },
+              {
+                "name": "workflowName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the workflow."
+              },
+              {
+                "name": "api-version",
+                "value": "",
+                "type": "query",
+                "description": "The Azure REST API version."
+              }
+            ]
+          },
+          "docs": "List workflow triggers"
+        },
+        {
+          "info": {
+            "name": "Run a workflow trigger",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://management.azure.com/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Logic/workflows/:workflowName/triggers/:triggerName/run",
+            "params": [
+              {
+                "name": "subscriptionId",
+                "value": "",
+                "type": "path",
+                "description": "The Azure subscription identifier."
+              },
+              {
+                "name": "resourceGroupName",
+                "value": "",
+                "type": "path",
+                "description": "The resource group containing the workflow."
+              },
+              {
+                "name": "workflowName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the workflow."
+              },
+              {
+                "name": "triggerName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "api-version",
+                "value": "",
+                "type": "query",
+                "description": "The Azure REST API version."
+              }
+            ]
+          },
+          "docs": "Run a workflow trigger"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "WorkflowVersions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List workflow versions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://management.azure.com/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Logic/workflows/:workflowName/versions",
+            "params": [
+              {
+                "name": "subscriptionId",
+                "value": "",
+                "type": "path",
+                "description": "The Azure subscription identifier."
+              },
+              {
+                "name": "resourceGroupName",
+                "value": "",
+                "type": "path",
+                "description": "The resource group containing the workflow."
+              },
+              {
+                "name": "workflowName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the workflow."
+              },
+              {
+                "name": "api-version",
+                "value": "",
+                "type": "query",
+                "description": "The Azure REST API version."
+              }
+            ]
+          },
+          "docs": "List workflow versions"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
