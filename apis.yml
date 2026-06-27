@@ -42,7 +42,7 @@ common:
     url: https://learn.microsoft.com/en-us/azure/logic-apps/
   - type: Reference
     url: https://learn.microsoft.com/en-us/rest/api/logic/
-  - type: Connectors
+  - type: Integrations
     url: https://learn.microsoft.com/en-us/connectors/connector-reference/
   - type: Pricing
     url: https://azure.microsoft.com/en-us/pricing/details/logic-apps/
