@@ -1,0 +1,17 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/logic-apps-management-api-openapi.yml
+schemes:
+- name: azureAD
+  source: openapi/logic-apps-management-api-openapi.yml
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://login.microsoftonline.com/common/oauth2/authorize
+    tokenUrl: https://login.microsoftonline.com/common/oauth2/token
+scopes:
+- scope: user_impersonation
+  description: Access Azure Service Management API
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/logic-apps-management-api-openapi.yml
