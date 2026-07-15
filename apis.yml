@@ -36,6 +36,8 @@ apis:
       - type: OpenAPI
         url: openapi/logic-apps-management-api-openapi.yml
 common:
+  - type: AgenticAccess
+    url: agentic-access/logic-apps-agentic-access.yml
   - type: VulnerabilityDisclosure
     url: security/logic-apps-vulnerability-disclosure.yml
   - type: DomainSecurity
