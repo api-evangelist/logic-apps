@@ -1,0 +1,238 @@
+openapi: 3.1.0
+info:
+  title: Azure Logic Apps Management WorkflowRuns Workflows API
+  description: The Azure Logic Apps Management REST API exposes operations for managing workflows, runs, triggers, versions and integration accounts in the multitenant (Consumption) Logic Apps service. Operations are reached via the Azure Resource Manager endpoint and require an Azure AD bearer token along with subscription-scoped resource group and workflow path parameters.
+  version: '2016-06-01'
+  contact:
+    name: Microsoft Azure
+    url: https://learn.microsoft.com/en-us/rest/api/logic/
+  license:
+    name: Microsoft API License
+    url: https://learn.microsoft.com/en-us/legal/
+servers:
+- url: https://management.azure.com
+  description: Azure Resource Manager
+security:
+- azureAD: []
+tags:
+- name: Workflows
+  description: Manage Logic Apps workflows.
+paths:
+  /subscriptions/{subscriptionId}/providers/Microsoft.Logic/workflows:
+    get:
+      tags:
+      - Workflows
+      summary: List workflows by subscription
+      operationId: listWorkflowsBySubscription
+      parameters:
+      - $ref: '#/components/parameters/subscriptionId'
+      - $ref: '#/components/parameters/apiVersion'
+      responses:
+        '200':
+          description: A list of workflows.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkflowListResult'
+  /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Logic/workflows:
+    get:
+      tags:
+      - Workflows
+      summary: List workflows by resource group
+      operationId: listWorkflowsByResourceGroup
+      parameters:
+      - $ref: '#/components/parameters/subscriptionId'
+      - $ref: '#/components/parameters/resourceGroupName'
+      - $ref: '#/components/parameters/apiVersion'
+      responses:
+        '200':
+          description: A list of workflows in the resource group.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkflowListResult'
+  /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Logic/workflows/{workflowName}:
+    get:
+      tags:
+      - Workflows
+      summary: Get a workflow
+      operationId: getWorkflow
+      parameters:
+      - $ref: '#/components/parameters/subscriptionId'
+      - $ref: '#/components/parameters/resourceGroupName'
+      - $ref: '#/components/parameters/workflowName'
+      - $ref: '#/components/parameters/apiVersion'
+      responses:
+        '200':
+          description: The requested workflow.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Workflow'
+    put:
+      tags:
+      - Workflows
+      summary: Create or update a workflow
+      operationId: createOrUpdateWorkflow
+      parameters:
+      - $ref: '#/components/parameters/subscriptionId'
+      - $ref: '#/components/parameters/resourceGroupName'
+      - $ref: '#/components/parameters/workflowName'
+      - $ref: '#/components/parameters/apiVersion'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Workflow'
+      responses:
+        '200':
+          description: The updated workflow.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Workflow'
+        '201':
+          description: The created workflow.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Workflow'
+    delete:
+      tags:
+      - Workflows
+      summary: Delete a workflow
+      operationId: deleteWorkflow
+      parameters:
+      - $ref: '#/components/parameters/subscriptionId'
+      - $ref: '#/components/parameters/resourceGroupName'
+      - $ref: '#/components/parameters/workflowName'
+      - $ref: '#/components/parameters/apiVersion'
+      responses:
+        '200':
+          description: Workflow deleted.
+        '204':
+          description: Workflow deleted.
+  ? /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Logic/workflows/{workflowName}/disable
+  : post:
+      tags:
+      - Workflows
+      summary: Disable a workflow
+      operationId: disableWorkflow
+      parameters:
+      - $ref: '#/components/parameters/subscriptionId'
+      - $ref: '#/components/parameters/resourceGroupName'
+      - $ref: '#/components/parameters/workflowName'
+      - $ref: '#/components/parameters/apiVersion'
+      responses:
+        '200':
+          description: Workflow disabled.
+  ? /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Logic/workflows/{workflowName}/enable
+  : post:
+      tags:
+      - Workflows
+      summary: Enable a workflow
+      operationId: enableWorkflow
+      parameters:
+      - $ref: '#/components/parameters/subscriptionId'
+      - $ref: '#/components/parameters/resourceGroupName'
+      - $ref: '#/components/parameters/workflowName'
+      - $ref: '#/components/parameters/apiVersion'
+      responses:
+        '200':
+          description: Workflow enabled.
+components:
+  schemas:
+    WorkflowListResult:
+      type: object
+      properties:
+        value:
+          type: array
+          items:
+            $ref: '#/components/schemas/Workflow'
+        nextLink:
+          type: string
+    Workflow:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        type:
+          type: string
+        location:
+          type: string
+        tags:
+          type: object
+          additionalProperties:
+            type: string
+        properties:
+          $ref: '#/components/schemas/WorkflowProperties'
+    WorkflowProperties:
+      type: object
+      properties:
+        provisioningState:
+          type: string
+        createdTime:
+          type: string
+          format: date-time
+        changedTime:
+          type: string
+          format: date-time
+        state:
+          type: string
+          enum:
+          - NotSpecified
+          - Completed
+          - Enabled
+          - Disabled
+          - Deleted
+          - Suspended
+        version:
+          type: string
+        accessEndpoint:
+          type: string
+        definition:
+          type: object
+        parameters:
+          type: object
+  parameters:
+    workflowName:
+      name: workflowName
+      in: path
+      required: true
+      description: The name of the workflow.
+      schema:
+        type: string
+    subscriptionId:
+      name: subscriptionId
+      in: path
+      required: true
+      description: The Azure subscription identifier.
+      schema:
+        type: string
+    apiVersion:
+      name: api-version
+      in: query
+      required: true
+      description: The Azure REST API version.
+      schema:
+        type: string
+        default: '2016-06-01'
+    resourceGroupName:
+      name: resourceGroupName
+      in: path
+      required: true
+      description: The resource group containing the workflow.
+      schema:
+        type: string
+  securitySchemes:
+    azureAD:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: https://login.microsoftonline.com/common/oauth2/authorize
+          tokenUrl: https://login.microsoftonline.com/common/oauth2/token
+          scopes:
+            user_impersonation: Access Azure Service Management API
