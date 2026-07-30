@@ -5,7 +5,20 @@ description: >-
   organizations. It provides a managed iPaaS platform with hundreds of connectors, a visual workflow designer, and a
   fully documented Azure Resource Manager REST API for managing workflows, runs, triggers and versions.
 type: Index
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/logic-apps.png
 tags:
   - Azure
   - Enterprise
@@ -18,23 +31,54 @@ created: '2026-03-27'
 modified: '2026-05-19'
 specificationVersion: '0.19'
 apis:
-  - aid: logic-apps:management-api
-    name: Azure Logic Apps Management API
-    description: >-
-      The Azure Logic Apps Management REST API exposes operations for managing workflows, runs, triggers, versions and
-      integration accounts in the multitenant (Consumption) Logic Apps service via Azure Resource Manager.
-    humanURL: https://learn.microsoft.com/en-us/rest/api/logic/
-    baseURL: https://management.azure.com
-    tags:
-      - Azure
-      - Management
-      - REST
-      - Workflow Automation
-    properties:
-      - type: Documentation
-        url: https://learn.microsoft.com/en-us/rest/api/logic/
-      - type: OpenAPI
-        url: openapi/logic-apps-management-api-openapi.yml
+- aid: logic-apps:logic-apps-workflowruns-api
+  name: Azure Logic Apps WorkflowRuns API
+  description: Inspect and cancel workflow runs.
+  humanURL: https://learn.microsoft.com/en-us/rest/api/logic/
+  baseURL: https://management.azure.com
+  tags:
+  - WorkflowRuns
+  properties:
+  - type: OpenAPI
+    url: openapi/logic-apps-workflowruns-api-openapi.yml
+  - type: Documentation
+    url: https://learn.microsoft.com/en-us/rest/api/logic/
+- aid: logic-apps:logic-apps-workflows-api
+  name: Azure Logic Apps Workflows API
+  description: Manage Logic Apps workflows.
+  humanURL: https://learn.microsoft.com/en-us/rest/api/logic/
+  baseURL: https://management.azure.com
+  tags:
+  - Workflows
+  properties:
+  - type: OpenAPI
+    url: openapi/logic-apps-workflows-api-openapi.yml
+  - type: Documentation
+    url: https://learn.microsoft.com/en-us/rest/api/logic/
+- aid: logic-apps:logic-apps-workflowtriggers-api
+  name: Azure Logic Apps WorkflowTriggers API
+  description: Manage workflow triggers and their histories.
+  humanURL: https://learn.microsoft.com/en-us/rest/api/logic/
+  baseURL: https://management.azure.com
+  tags:
+  - WorkflowTriggers
+  properties:
+  - type: OpenAPI
+    url: openapi/logic-apps-workflowtriggers-api-openapi.yml
+  - type: Documentation
+    url: https://learn.microsoft.com/en-us/rest/api/logic/
+- aid: logic-apps:logic-apps-workflowversions-api
+  name: Azure Logic Apps WorkflowVersions API
+  description: Manage versions of workflow definitions.
+  humanURL: https://learn.microsoft.com/en-us/rest/api/logic/
+  baseURL: https://management.azure.com
+  tags:
+  - WorkflowVersions
+  properties:
+  - type: OpenAPI
+    url: openapi/logic-apps-workflowversions-api-openapi.yml
+  - type: Documentation
+    url: https://learn.microsoft.com/en-us/rest/api/logic/
 common:
   - type: AgenticAccess
     url: agentic-access/logic-apps-agentic-access.yml
