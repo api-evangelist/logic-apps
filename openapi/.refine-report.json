@@ -1,0 +1,20 @@
+{
+  "provider": "logic-apps",
+  "sources": [
+    "logic-apps-workflowruns-api-openapi.yml",
+    "logic-apps-workflows-api-openapi.yml",
+    "logic-apps-workflowtriggers-api-openapi.yml",
+    "logic-apps-workflowversions-api-openapi.yml"
+  ],
+  "outputs": [
+    "logic-apps-workflowruns-api-openapi.yml",
+    "logic-apps-workflows-api-openapi.yml",
+    "logic-apps-workflowtriggers-api-openapi.yml",
+    "logic-apps-workflowversions-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
