@@ -1,0 +1,200 @@
+{
+  "item": [
+    {
+      "id": "41800a3e-5cb2-4659-bd70-17c03ba9622b",
+      "name": "WorkflowVersions",
+      "description": {
+        "content": "Manage versions of workflow definitions.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "0a538a39-26f7-4fd0-b2de-3c3bb43d680b",
+          "name": "List workflow versions",
+          "request": {
+            "name": "List workflow versions",
+            "description": {},
+            "url": {
+              "path": [
+                "subscriptions",
+                ":subscriptionId",
+                "resourceGroups",
+                ":resourceGroupName",
+                "providers",
+                "Microsoft.Logic",
+                "workflows",
+                ":workflowName",
+                "versions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "api-version",
+                  "value": "2016-06-01",
+                  "description": "(Required) The Azure REST API version."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "subscriptionId",
+                  "description": "(Required) The Azure subscription identifier."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "resourceGroupName",
+                  "description": "(Required) The resource group containing the workflow."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workflowName",
+                  "description": "(Required) The name of the workflow."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a63e0bc4-6958-4d27-a0f7-bcf9e371e3af",
+              "name": "A list of workflow versions.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.Logic",
+                    "workflows",
+                    ":workflowName",
+                    "versions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api-version",
+                      "value": "2016-06-01"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "subscriptionId",
+                      "description": "(Required) The Azure subscription identifier."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "resourceGroupName",
+                      "description": "(Required) The resource group containing the workflow."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflowName",
+                      "description": "(Required) The name of the workflow."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"value\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"type\": \"string\",\n      \"properties\": {\n        \"provisioningState\": \"string\",\n        \"createdTime\": \"1966-06-23T04:34:27.851Z\",\n        \"changedTime\": \"2013-02-08T00:28:13.316Z\",\n        \"state\": \"NotSpecified\",\n        \"version\": \"string\",\n        \"accessEndpoint\": \"string\",\n        \"definition\": {},\n        \"parameters\": {}\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"type\": \"string\",\n      \"properties\": {\n        \"provisioningState\": \"string\",\n        \"createdTime\": \"1974-11-18T19:55:12.715Z\",\n        \"changedTime\": \"2010-02-17T01:01:51.892Z\",\n        \"state\": \"Disabled\",\n        \"version\": \"string\",\n        \"accessEndpoint\": \"string\",\n        \"definition\": {},\n        \"parameters\": {}\n      }\n    }\n  ],\n  \"nextLink\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://management.azure.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "user_impersonation"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://login.microsoftonline.com/common/oauth2/token"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://login.microsoftonline.com/common/oauth2/authorize"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "d6b90aeb-9c53-452b-b214-5ce224549030",
+    "name": "Azure Logic Apps Management WorkflowRuns WorkflowVersions API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Azure Logic Apps Management REST API exposes operations for managing workflows, runs, triggers, versions and integration accounts in the multitenant (Consumption) Logic Apps service. Operations are reached via the Azure Resource Manager endpoint and require an Azure AD bearer token along with subscription-scoped resource group and workflow path parameters.\n\nContact Support:\n Name: Microsoft Azure",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,67 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Azure Logic Apps Management WorkflowRuns WorkflowVersions API",
+    "version": "2016-06-01"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://login.microsoftonline.com/common/oauth2/authorize",
+      "accessTokenUrl": "https://login.microsoftonline.com/common/oauth2/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "WorkflowVersions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List workflow versions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://management.azure.com/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Logic/workflows/:workflowName/versions",
+            "params": [
+              {
+                "name": "subscriptionId",
+                "value": "",
+                "type": "path",
+                "description": "The Azure subscription identifier."
+              },
+              {
+                "name": "resourceGroupName",
+                "value": "",
+                "type": "path",
+                "description": "The resource group containing the workflow."
+              },
+              {
+                "name": "workflowName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the workflow."
+              },
+              {
+                "name": "api-version",
+                "value": "",
+                "type": "query",
+                "description": "The Azure REST API version."
+              }
+            ]
+          },
+          "docs": "List workflow versions"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
